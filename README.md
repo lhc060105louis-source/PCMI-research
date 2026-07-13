@@ -17,11 +17,54 @@ The repository intentionally tracks source code and lightweight project metadata
 `-- README.md
 ```
 
+## Environment
+
+Recommended runtime:
+
+- Python 3.10 or newer
+- Git
+- A local virtual environment named `.venv`
+
+Python packages are listed in `requirements.txt`:
+
+- `pandas>=2.0.0`
+- `pyarrow>=14.0.0`
+- `SQLAlchemy>=2.0.0`
+- `python-dotenv>=1.0.1`
+
+Optional local configuration can be copied from `.env.example`:
+
+```text
+DATA_DIR=./data
+OUT_DIR=./out
+SQLITE_PATH=./out/data.sqlite
+CSV_SEP=,
+CSV_ENCODING=utf-8
+```
+
+CLI flags override these environment values.
+
 ## Setup
 
 ```bash
 python -m venv .venv
+```
+
+Windows PowerShell:
+
+```powershell
 .\.venv\Scripts\Activate.ps1
+```
+
+macOS or Linux:
+
+```bash
+source .venv/bin/activate
+```
+
+Install dependencies:
+
+```bash
 pip install -r requirements.txt
 ```
 
@@ -34,6 +77,18 @@ python -m src.main --data-dir ./data --out-dir ./out --db ./out/data.sqlite
 ```
 
 This creates parquet files under `out/parquet/`, a SQLite database at `out/data.sqlite`, and schema summaries in `out/summaries.json`.
+
+You can also run the helper script on macOS or Linux:
+
+```bash
+bash scripts/run_ingest.sh
+```
+
+## Expected Local Files
+
+Put source datasets in `data/`. The current analysis scripts expect PCMI-style CSV tables such as claims, contracts, contract vehicles, coverage plans, sellers, servicers, product components, product loss codes, and product types.
+
+Generated files are written to `out/`. These outputs are local artifacts and are not committed to GitHub.
 
 ## Analysis Scripts
 
