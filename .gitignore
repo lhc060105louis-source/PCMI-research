@@ -1,0 +1,32 @@
+# Virtual environments
+.venv/
+venv/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Local environment
+.env
+
+# Large or generated data
+/data/*
+/out/*
+*.sqlite
+*.db
+*.parquet
+*.pkl
+*.pickle
+*.mat
+*.zip
+
+# Keep directory placeholders
+!/data/.gitkeep
+!/out/.gitkeep
+
+# Editor and OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
